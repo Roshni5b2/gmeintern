@@ -782,7 +782,13 @@ class ControllerCatalogProduct extends Controller {
 		} else {
 			$data['status'] = true;
 		}
-
+		if (isset($this->request->post['rental'])) {
+			$data['rental'] = $this->request->post['rental'];
+		} elseif (!empty($product_info)) {
+			$data['rental'] = $product_info['rental'];
+		} else {
+			$data['rental'] = 1;
+		}
 		if (isset($this->request->post['weight'])) {
 			$data['weight'] = $this->request->post['weight'];
 		} elseif (!empty($product_info)) {
